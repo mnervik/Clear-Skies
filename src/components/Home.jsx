@@ -1,18 +1,21 @@
 import React, {Component} from 'react'
 
 class Home extends Component {
+    state = {
+        //favourites
+    }
+
     render() {
         return (
-            <main>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            Column
-                        </div>
-                    </div>
-                </div>
-            </main>
+            <div className="col">
+                <h1>Home Page</h1>
+                <h2>Favourites</h2>
+            </div>
         )
+    }
+
+    getFavourites() {
+
     }
 }
 

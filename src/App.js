@@ -13,25 +13,33 @@ import City from "./components/City"
 class App extends Component {
     render() {
         return (
-            <BrowserRouter>
-                <Link to="/">Home</Link>
-                <Link to="/search">Search</Link>
-                <Link to="/city">City</Link>
+            <div className="container">
+                <BrowserRouter>
+                    <div className="row">
+                        <div className="col-2">
+                            <Link to="/">Home</Link>
+                            <Link to="/search">Search</Link>
+                            <Link to="/city">City</Link>
+                        </div>
+                    </div>
 
-                <Switch>
-                    <Route path="/search" exact>
-                        <Search/>
-                    </Route>
+                    <Switch>
+                        <main className="row">
+                            <Route path="/search">
+                                <Search/>
+                            </Route>
 
-                    <Route path="/city" exact>
-                        <City/>
-                    </Route>
+                            <Route path="/city">
+                                <City/>
+                            </Route>
 
-                    <Route path="/" exact>
-                        <Home/>
-                    </Route>
-                </Switch>
-            </BrowserRouter>
+                            <Route path="/" exact>
+                                <Home/>
+                            </Route>
+                        </main>
+                    </Switch>
+                </BrowserRouter>
+            </div>
         )
     }
 }
