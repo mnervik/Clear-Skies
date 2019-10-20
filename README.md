@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Important
+
+This project two api's, and they both have a limited amout of uses left. If the project stopps working the codes are probably no longer valid. If the codes have expired you can create your own codes and insert the api-key in `src/config.json`
+- Weatherbit: https://www.weatherbit.io/ (limited but free)
+- Google API https://console.developers.google.com/ (12 month free trial)
+  - Google Geocode API
+  - Google Places API
+
 ## Available Scripts
 
 In the project directory, you can run:
