@@ -1,0 +1,80 @@
+.heading {
+  &__link {
+  }
+
+  &--inline {
+    display: inline
+  }
+
+  &--sub {
+    color: #1948DD
+  }
+}
+
+.weather {
+  max-width: 400px;
+
+  &__body {
+  }
+
+  &__img {
+    width: 100px;
+  }
+
+  &__title {
+  }
+
+  &__temp {
+    &--hot {
+      color: red !important;
+    }
+
+    &--cold {
+      color: #1948DD !important;
+    }
+  }
+
+  &__duration {
+  }
+}
+
+.forecast {
+  &__body {
+  }
+
+  &__img {
+    width: 100px;
+  }
+}
+
+.star {
+  &--active {
+    color: orange;
+
+    &:hover {
+      color: rgba(73, 73, 73, 0.7);
+      transition: color 200ms;
+    }
+  }
+}
+
+.favourites {
+  &__item {
+  }
+}
+
+/*
+  Here I am using a normal selector because this element is not accessible as BEM,
+  the element is created from another npm package
+ */
+.typeahead {
+  max-width: 540px;
+
+  input {
+    border-radius: 20px;
+  }
+
+  input:focus {
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 1px;
+  }
+}

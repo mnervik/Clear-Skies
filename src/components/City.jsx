@@ -32,23 +32,22 @@ class City extends Component {
     render() {
         return (
             <div className="col">
-                <h1 className="d-inline heading">
+                <h1 className="heading heading--inline">
                     <Link to="/search" className="heading__link">
                         <i className="fas fa-caret-left mr-2 ml-3"/>
                     </Link>Clear Skies
                 </h1>
                 <i className="fas fa-caret-right fa-2x ml-2 mr-1"/>
-                <h2 className="d-inline heading">
+                <h2 className="heading heading--inline">
                     {this.state.city}, {this.state.country} {this.renderFavouriteStar()}
                 </h2>
 
                 <section>
-                    <h2>Current Weather</h2>
-                    <div className="card mb-3 weather" style={{maxWidth: "400px"}}>
+                    <h2 className="heading--sub">Now</h2>
+                    <div className="card mb-3 weather">
                         <div className="row no-gutters">
                             <div className="col-md-4">
                                 <img className="card-img weather__img"
-                                     style={{width: "100px"}}
                                      alt="weather"
                                      src={this.iconToSrc(this.state.current.icon)}/>
                             </div>
@@ -64,7 +63,7 @@ class City extends Component {
                 </section>
 
                 <section>
-                    <h2>Forecast Weather</h2>
+                    <h2 className="heading--sub">16 Day Forecast</h2>
                     {this.renderForecast()}
                 </section>
             </div>
@@ -111,6 +110,7 @@ class City extends Component {
         e.target.classList.add('far')
         e.target.classList.remove('fas', 'star--active')
 
+        // Toggle Fav status
         this.setState({isFav: false})
     }
 
@@ -123,6 +123,7 @@ class City extends Component {
         e.target.classList.add('fas', 'star--active')
         e.target.classList.remove('far')
 
+        // Toggle Fav status
         this.setState({isFav: true})
     }
 
@@ -209,17 +210,19 @@ class City extends Component {
         )
     }
 
-    singleForecast = index => {
+    singleForecast (index){
+        let tempClass = this.state.forecast[index].temp > 0 ? 'hot' : 'cold'
+        tempClass = `text-muted weather__temp weather__temp--${tempClass}`
+
         return (
             <div className="card col-md-3 col-sm-6 mb-3 forecast">
                 <img className="card-img-top forecast__img"
-                     style={{width: "100px"}}
                      alt="weather"
                      src={this.iconToSrc(this.state.forecast[index].icon)}/>
 
                 <div className="card-body forecast__body weather">
                     <h5 className="card-title weather__title">{this.state.forecast[index].text}</h5>
-                    <p className="card-text weather__temp">{this.state.forecast[index].temp}&deg;C</p>
+                    <p className={tempClass}>{this.state.forecast[index].temp}&deg;C</p>
                     <p className="text-muted weather__duration">in {index + 1} {index ? 'days' : 'day'}</p>
                 </div>
             </div>

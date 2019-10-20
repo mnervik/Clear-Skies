@@ -70,7 +70,7 @@ class Search extends Component {
                     <i className="fas fa-search ml-2 fa-xs"/>
                 </h1>
 
-                <h2>Find Location</h2>
+                <h2 className="heading--sub">Find Location</h2>
                 <div className="mt-2 mb-1">
                     <div className="btn btn-primary"
                          onClick={() => this.handleClick()}

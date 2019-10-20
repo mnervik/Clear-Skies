@@ -14,7 +14,7 @@ class Home extends Component {
                 </h1>
 
                 <section>
-                    <h2>Favourites</h2>
+                    <h2 className="heading--sub">Favourites</h2>
                     {this.renderFavourites()}
                 </section>
             </div>
