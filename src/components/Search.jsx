@@ -60,10 +60,15 @@ class Search extends Component {
     render() {
         return (
             <div className="col">
-                <h1><Link to="/"><i className="fas fa-home mr-1"/></Link>Clear Skies<i className="fas fa-search ml-2 fa-xs"/></h1>
+                <h1 className="heading">
+                    <Link to="/" className="heading__link">
+                        <i className="fas fa-home mr-1"/>
+                    </Link>
+                    Clear Skies
+                    <i className="fas fa-search ml-2 fa-xs"/>
+                </h1>
 
                 <h2>Find Location</h2>
-
                 <div className="mt-2 mb-1">
                     <div className="btn btn-primary"
                          onClick={() => this.handleClick()}
@@ -77,6 +82,7 @@ class Search extends Component {
                     onChange={this.handleSearch}
                     placeholder="Search for location"
                     options={this.state.options}
+                    className="typeahead"
                 />
 
                 {this.renderRedirect()}

@@ -5,7 +5,13 @@ class Home extends Component {
     render() {
         return (
             <div className="col">
-                <h1><i className="fas fa-home mr-1"/>Clear Skies<Link to="/search"><i className="fas fa-search ml-2 fa-xs"/></Link></h1>
+                <h1 className="heading">
+                    <i className="fas fa-home mr-1"/>
+                    Clear Skies
+                    <Link to="/search" className="heading__link">
+                        <i className="fas fa-search ml-2 fa-xs"/>
+                    </Link>
+                </h1>
 
                 <section>
                     <h2>Favourites</h2>
@@ -21,14 +27,14 @@ class Home extends Component {
         let arr = []
         for (let i = fav.length - 1; i >= 0; i--) {
             arr.push(
-                <li className="list-group-item" key={i + 1}>
+                <li className="list-group-item favourites" key={i + 1}>
                     {this.renderFavourite(fav[i])}
                 </li>
             )
         }
 
         return (
-            <ul className="list-group w-50">
+            <ul className="list-group mw-100">
                 {arr}
             </ul>
         )
@@ -36,15 +42,15 @@ class Home extends Component {
 
     renderFavourite = (item) => {
         return (
-            <p>
-                <Link to={`/city/${item}/0/0`}>{this.renderFavouriteStar()} {item}</Link>
+            <p className="favourites__item">
+                {this.renderFavouriteStar()}<Link to={`/city/${item}/0/0`}> {item}</Link>
             </p>
         )
     }
 
     renderFavouriteStar = () => {
         return (
-            <i className="fas fa-star align-items-end"
+            <i className="fas fa-star star star--active align-items-end"
                onClick={this.removeFavourite}
             />
         )

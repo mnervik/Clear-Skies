@@ -30,24 +30,31 @@ class City extends Component {
     render() {
         return (
             <div className="col">
-                <h1 className="d-inline"><Link to="/search"><i className="fas fa-caret-left mr-2 ml-2"/></Link>Clear Skies
-                </h1><i className="fas fa-caret-right fa-2x ml-2 mr-1"/><h2
-                className="d-inline">{this.state.city}, {this.state.country} {this.renderFavouriteStar()}</h2>
+                <h1 className="d-inline heading">
+                    <Link to="/search" className="heading__link">
+                        <i className="fas fa-caret-left mr-2 ml-3"/>
+                    </Link>Clear Skies
+                </h1>
+                <i className="fas fa-caret-right fa-2x ml-2 mr-1"/>
+                <h2 className="d-inline heading">
+                    {this.state.city}, {this.state.country} {this.renderFavouriteStar()}
+                </h2>
 
                 <section>
                     <h2>Current Weather</h2>
-                    <div className="card mb-3" style={{maxWidth: "400px"}}>
+                    <div className="card mb-3 weather" style={{maxWidth: "400px"}}>
                         <div className="row no-gutters">
                             <div className="col-md-4">
-                                <img className="card-img"
+                                <img className="card-img weather__img"
                                      style={{width: "100px"}}
                                      alt="weather"
-                                     src={this.state.current.icon}/>
+                                     src={this.iconToSrc(this.state.current.icon)}/>
                             </div>
 
                             <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">{this.state.current.text}</h5>
+                                <div className="card-body weather__body">
+                                    <h5 className="card-title weather__title">{this.state.current.text}</h5>
+                                    <p className="card-text weather__temp">{this.state.current.temp}&deg;C</p>
                                 </div>
                             </div>
                         </div>
@@ -65,19 +72,19 @@ class City extends Component {
     renderFavouriteStar = () => {
         if (localStorage.fav.indexOf(this.state.text) > -1) {
             return (
-                <React.Fragment>
+                <div className="d-inline star star--active">
                     <i className="fas fa-star"
                        onClick={this.removeFavourite}
                     />
-                </React.Fragment>
+                </div>
             )
         } else {
             return (
-                <React.Fragment>
+                <div className="d-inline star">
                     <i className="far fa-star"
                        onClick={this.addFavourite}
                     />
-                </React.Fragment>
+                </div>
             )
         }
     }
@@ -100,7 +107,7 @@ class City extends Component {
 
         // Change Visual Status of Star
         e.target.classList.add('far')
-        e.target.classList.remove('fas')
+        e.target.classList.remove('fas', 'star--active')
 
         this.setState({isFav: false})
     }
@@ -111,7 +118,7 @@ class City extends Component {
         localStorage.fav = JSON.stringify(fav)
 
         // Change Visual Status of Star
-        e.target.classList.add('fas')
+        e.target.classList.add('fas', 'star--active')
         e.target.classList.remove('far')
 
         this.setState({isFav: true})
@@ -134,8 +141,9 @@ class City extends Component {
                         city: data.city_name,
                         country: data.country_code,
                         current: {
-                            icon: `https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`,
-                            text: data.weather.description
+                            icon: data.weather.icon,
+                            text: data.weather.description,
+                            temp: data.temp,
                         },
                     })
                 })
@@ -161,7 +169,7 @@ class City extends Component {
                         city: data.city_name,
                         country: data.country_code,
                         current: {
-                            icon: `https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`,
+                            icon: data.weather.icon,
                             text: data.weather.description,
                             temp: data.temp,
                         },
@@ -201,16 +209,16 @@ class City extends Component {
 
     singleForecast = index => {
         return (
-            <div className="card mb-3 w-25">
-                <img className="card-img-top"
+            <div className="card col-md-3 col-sm-6 mb-3 forecast">
+                <img className="card-img-top forecast__img"
                      style={{width: "100px"}}
                      alt="weather"
                      src={this.iconToSrc(this.state.forecast[index].icon)}/>
 
-                <div className="card-body">
-                    <h5 className="card-title">{this.state.forecast[index].text}</h5>
-                    <p className="card-text">{this.state.forecast[index].temp}&deg;C</p>
-                    <p className="text-muted">in {index + 1} {index ? 'days' : 'day'}</p>
+                <div className="card-body forecast__body weather">
+                    <h5 className="card-title weather__title">{this.state.forecast[index].text}</h5>
+                    <p className="card-text weather__temp">{this.state.forecast[index].temp}&deg;C</p>
+                    <p className="text-muted weather__duration">in {index + 1} {index ? 'days' : 'day'}</p>
                 </div>
             </div>
         )
