@@ -5,6 +5,9 @@ import {
     Route,
 } from "react-router-dom"
 
+import {ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.min.css'
+
 import Home from "./components/Home"
 import Search from "./components/Search"
 import City from "./components/City"
@@ -20,6 +23,8 @@ class App extends Component {
 
         return (
             <div className="container">
+                <ToastContainer/>
+
                 <BrowserRouter>
                     <Switch>
                         <main className="row">

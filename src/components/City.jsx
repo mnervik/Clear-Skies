@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from "react-router-dom"
 
 import config from '../config'
+import {toast} from "react-toastify"
 
 class City extends Component {
     state = {

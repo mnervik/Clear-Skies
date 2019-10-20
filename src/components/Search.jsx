@@ -8,6 +8,7 @@ import {AsyncTypeahead} from "react-bootstrap-typeahead"
 import "react-bootstrap-typeahead/css/Typeahead.min.css"
 
 import config from "../config"
+import {toast} from "react-toastify"
 
 class Search extends Component {
     state = {
@@ -55,7 +56,8 @@ class Search extends Component {
                 this.cordToText()
             })
         } else {
-            console.log('GeoLocation is not supported') // TODO Add Toast
+            toast('Oops, this feature is not supported by your browser/device',
+                {type: 'warning'})
         }
     }
 
