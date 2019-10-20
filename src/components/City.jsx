@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from "react-router-dom"
 
+import config from '../config'
+
 class City extends Component {
     state = {
         city: "",
@@ -133,7 +135,7 @@ class City extends Component {
 
         // Unknown exact location
         if (!parseInt(lat) || !parseInt(lon)) {
-            fetch(`https://api.weatherbit.io/v2.0/current?city=${city}&country=${country}&key=4c59b77e86454e1b9e79b6a2105ac214`)
+            fetch(`https://api.weatherbit.io/v2.0/current?city=${city}&country=${country}&key=${config.apiKey.weatherbit}`)
                 .then(res => res.json())
                 .then(({data}) => {
                     data = data[0]
@@ -148,7 +150,7 @@ class City extends Component {
                     })
                 })
 
-            fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}m&country=${country}&key=4c59b77e86454e1b9e79b6a2105ac214`)
+            fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}m&country=${country}&key=${config.apiKey.weatherbit}`)
                 .then(res => res.json())
                 .then(({data}) => {
                     let forecast = data.map((key, index) => {
@@ -161,7 +163,7 @@ class City extends Component {
                     this.setState({forecast: forecast})
                 })
         } else {
-            fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=4c59b77e86454e1b9e79b6a2105ac214`)
+            fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${config.apiKey.weatherbit}`)
                 .then(res => res.json())
                 .then(({data}) => {
                     data = data[0]
@@ -176,7 +178,7 @@ class City extends Component {
                     })
                 })
 
-            fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=4c59b77e86454e1b9e79b6a2105ac214`)
+            fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${config.apiKey.weatherbit}`)
                 .then(res => res.json())
                 .then(({data}) => {
                     let forecast = data.map((key, index) => {

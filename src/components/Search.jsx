@@ -7,6 +7,8 @@ import {
 import {AsyncTypeahead} from "react-bootstrap-typeahead"
 import "react-bootstrap-typeahead/css/Typeahead.min.css"
 
+import config from "../config"
+
 class Search extends Component {
     state = {
         isLoading: false,
@@ -22,7 +24,7 @@ class Search extends Component {
     handleChange = query => {
         this.setState({isLoading: true})
 
-        fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyCZLBtw1zFx-NN3Y21_1NQb_ru5-5KUvkY&input=${query}&types=(regions)&language=en`)
+        fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${config.apiKey.google}&input=${query}&types=(regions)&language=en`)
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -97,7 +99,7 @@ class Search extends Component {
     }
 
     cordToText = () => {
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.gps.lat},${this.state.gps.lon}&key=AIzaSyCZLBtw1zFx-NN3Y21_1NQb_ru5-5KUvkY`)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.gps.lat},${this.state.gps.lon}&key=${config.apiKey.google}`)
             .then(res => res.json())
             .then((data) => {
                 this.setState({
