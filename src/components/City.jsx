@@ -165,7 +165,8 @@ class City extends Component {
                         country: data.country_code,
                         current: {
                             icon: `https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`,
-                            text: data.weather.description
+                            text: data.weather.description,
+                            temp: data.temp,
                         },
                     })
                 })
