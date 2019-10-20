@@ -9,6 +9,7 @@ class City extends Component {
         current: {
             icon: "",
             text: "",
+            temp: 0
         },
         forecast: [{
             icon: "",
@@ -90,8 +91,6 @@ class City extends Component {
     }
 
     removeFavourite = (e) => {
-        console.log(e)
-
         let fav = this.getFavourite()
         fav = fav.filter(item => {
             return item !== this.state.text
@@ -107,8 +106,6 @@ class City extends Component {
     }
 
     addFavourite = (e) => {
-        console.log(e)
-
         let fav = this.getFavourite()
         fav.push(this.state.text)
         localStorage.fav = JSON.stringify(fav)
