@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Link} from "react-router-dom"
 
 import config from '../config'
-import {toast} from "react-toastify"
 
 class City extends Component {
     state = {
@@ -142,11 +141,11 @@ class City extends Component {
                 .then(({data}) => {
                     data = data[0]
                     this.setState({
-                        city: data.city_name,
-                        country: data.country_code,
+                        city: data["city_name"],
+                        country: data["country_code"],
                         current: {
-                            icon: data.weather.icon,
-                            text: data.weather.description,
+                            icon: data["weather"].icon,
+                            text: data["weather"].description,
                             temp: data.temp,
                         },
                     })
@@ -157,8 +156,8 @@ class City extends Component {
                 .then(({data}) => {
                     let forecast = data.map((key, index) => {
                         return {
-                            icon: data[index].weather.icon,
-                            text: data[index].weather.description,
+                            icon: data[index]["weather"].icon,
+                            text: data[index]["weather"].description,
                             temp: data[index].temp
                         }
                     })
@@ -170,11 +169,11 @@ class City extends Component {
                 .then(({data}) => {
                     data = data[0]
                     this.setState({
-                        city: data.city_name,
-                        country: data.country_code,
+                        city: data["city_name"],
+                        country: data["country_code"],
                         current: {
-                            icon: data.weather.icon,
-                            text: data.weather.description,
+                            icon: data["weather"].icon,
+                            text: data["weather"].description,
                             temp: data.temp,
                         },
                     })
@@ -185,8 +184,8 @@ class City extends Component {
                 .then(({data}) => {
                     let forecast = data.map((key, index) => {
                         return {
-                            icon: data[index].weather.icon,
-                            text: data[index].weather.description,
+                            icon: data[index]["weather"].icon,
+                            text: data[index]["weather"].description,
                             temp: data[index].temp
                         }
                     })
@@ -211,7 +210,7 @@ class City extends Component {
         )
     }
 
-    singleForecast (index){
+    singleForecast(index) {
         let tempClass = this.state.forecast[index].temp > 0 ? 'hot' : 'cold'
         tempClass = `text-muted weather__temp weather__temp--${tempClass}`
 
